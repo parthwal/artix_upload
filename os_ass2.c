@@ -11,11 +11,11 @@ int main()
 {
     const int np = 3; // number of processes
     pid_t pid[3];
-    double ptimes[3]; // process time
+    long long ptimes[3]; // process time
     double start[3];
     long long t1,t2,t3;
     t1 = time(NULL);
-    start[0] = (double)clock();
+    // start[0] = (double)clock();
     pid[0] = fork();
     if (pid[0] == 0)
     {
@@ -31,7 +31,7 @@ int main()
     }
 
     t2 = time(NULL);
-    start[1] = (double)clock();
+    // start[1] = (double)clock();
     pid[1] = fork();
     if (pid[1] == 0)
     {
@@ -49,7 +49,7 @@ int main()
     }
 
     t3 = time(NULL);
-    start[2] = (double)clock();
+    // start[2] = (double)clock();
     pid[2] = fork();
     if (pid[2] == 0)
     {
@@ -87,6 +87,6 @@ int main()
     }
     for(int i=0;i<np;i++){
         printf("\n%d: ",(int) pid[i]);
-        printf("%f\n",ptimes[i]);
+        printf("%d\n",(int)ptimes[i]);
     }
 }

@@ -68,17 +68,17 @@ int main()
         if (waitL == pid[0])
         {
             printf("\nprocess1_ended\n");
-            ptimes[0] = (double)(clock() - start[0])/CLOCKS_PER_SEC;
+            ptimes[0] = (double)(clock() - start[0])/(double)CLOCKS_PER_SEC;
         }
         else if (waitL == pid[1])
         {
             printf("\nprocess2_ended\n");
-            ptimes[1] = (double)(clock() - start[1])/CLOCKS_PER_SEC;
+            ptimes[1] = (double)(clock() - start[1])/(double)CLOCKS_PER_SEC;
         }
         else if (waitL == pid[2])
         {
             printf("\nprocess3_ended\n");
-            ptimes[2] = (double)(clock() - start[2])/CLOCKS_PER_SEC;
+            ptimes[2] = (double)(clock() - start[2])/(double)CLOCKS_PER_SEC;
         }
     }
     for(int i=0;i<np;i++){

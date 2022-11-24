@@ -13,6 +13,8 @@ int main()
     pid_t pid[3];
     double ptimes[3]; // process time
     double start[3];
+    long long t1,t2,t3;
+    t1 = time(NULL);
     start[0] = (double)clock();
     pid[0] = fork();
     if (pid[0] == 0)
@@ -28,6 +30,7 @@ int main()
         exit(1);
     }
 
+    t2 = time(NULL);
     start[1] = (double)clock();
     pid[1] = fork();
     if (pid[1] == 0)
@@ -45,6 +48,7 @@ int main()
         exit(1);
     }
 
+    t3 = time(NULL);
     start[2] = (double)clock();
     pid[2] = fork();
     if (pid[2] == 0)
@@ -68,17 +72,17 @@ int main()
         if (waitL == pid[0])
         {
             printf("\nprocess1_ended\n");
-            ptimes[0] = (double)(clock() - start[0])/(double)CLOCKS_PER_SEC;
+            ptimes[0] = (double)(time(NULL)-t1);//(double)(clock() - start[0])/(double)CLOCKS_PER_SEC;
         }
         else if (waitL == pid[1])
         {
             printf("\nprocess2_ended\n");
-            ptimes[1] = (double)(clock() - start[1])/(double)CLOCKS_PER_SEC;
+            ptimes[1] = (double)(time(NULL)-t2);//(double)(clock() - start[1])/(double)CLOCKS_PER_SEC;
         }
         else if (waitL == pid[2])
         {
             printf("\nprocess3_ended\n");
-            ptimes[2] = (double)(clock() - start[2])/(double)CLOCKS_PER_SEC;
+            ptimes[2] = (double)(time(NULL)-t3);//(double)(clock() - start[2])/(double)CLOCKS_PER_SEC;
         }
     }
     for(int i=0;i<np;i++){

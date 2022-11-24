@@ -19,6 +19,7 @@ int main()
     {
         printf("Child0");
         execlp("./process1.sh", "./process1.sh", NULL);
+        exit(0);
     }
     else if (pid[0] < 0)
     {
@@ -32,6 +33,7 @@ int main()
     {
         printf("Child1");
         execlp("./process2.sh", "./process2.sh", NULL);
+        exit(0);
     }
     else if (pid[1] < 0)
     {
@@ -46,6 +48,8 @@ int main()
 
         printf("Child2");
         execlp("./process3.sh", "./process3.sh", NULL);
+        exit(0);
+
     }
     else if (pid[2] < 0)
     {

@@ -17,6 +17,7 @@ int main()
     pid[0] = fork();
     if (pid[0] == 0)
     {
+        setpriority(0, PRIO_PROCESS, 1);
         printf("Child0");
         execlp("./process1.sh", "./process1.sh", NULL);
         exit(0);
@@ -31,6 +32,7 @@ int main()
     pid[1] = fork();
     if (pid[1] == 0)
     {
+        setpriority(0, PRIO_PROCESS, 20);
         printf("Child1");
         execlp("./process2.sh", "./process2.sh", NULL);
         exit(0);
@@ -45,11 +47,10 @@ int main()
     pid[2] = fork();
     if (pid[2] == 0)
     {
-
+        setpriority(0, PRIO_PROCESS, 40);
         printf("Child2");
         execlp("./process3.sh", "./process3.sh", NULL);
         exit(0);
-
     }
     else if (pid[2] < 0)
     {
@@ -63,14 +64,20 @@ int main()
         if (waitL == pid[0])
         {
             printf("\nprocess1_ended\n");
+            ptimes[0] = (double)(clock() - start[0])/CLOCKS_PER_SEC;
         }
         else if (waitL == pid[1])
         {
             printf("\nprocess2_ended\n");
+            ptimes[1] = (double)(clock() - start[1])/CLOCKS_PER_SEC;
         }
         else if (waitL == pid[2])
         {
             printf("\nprocess3_ended\n");
+            ptimes[2] = (double)(clock() - start[2])/CLOCKS_PER_SEC;
         }
+    }
+    for(int i=0;i<np;i++){
+        printf("\n%f\n",ptimes[i]);
     }
 }
